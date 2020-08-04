@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pizzarella Florencia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <!-- firestore -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    
+</head>
+
+
+
+
+<body>
+
+    <div class="header">
+
+
+    </div>
+
+    <div class="menu mb-5">
+        <ul class="ul">
+            <li class="item"><a href="login.html">Iniciar sesión</a></li>
+            <li class="item"><a href="index.html">Inicio</a></li>
+            <li class="item"><a href="index.html">Productos</a></li>
+            <img class="img" src="./images/logo.png" alt="">
+            <li class="item"><a href="#">Nosotros</a></li>
+            <li class="item"><a href="#">Contactenos</a></li>
+            <li class="item"><a
+                    href="https://udlaedu-my.sharepoint.com/:w:/g/personal/nata_velez_udla_edu_co/EbsqwFc_XAdIn7AOzECbHdsBtJmii72M_cwNcB3A0Q94aA?e=4%3A2dT7b9&at=9">Documentacion</a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class=" col-12 mt-5 pt-5 mb-2">
+        <div class="card">
+            <div class="cont-carrusel  ">
+                <div id="carouselExampleIndicators" class="carousel slide w-100 h-100" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active fase">
+                            <img src="./img/1.jpg" class="d-block w-100 imgen" alt="...">
+                        </div>
+                        <div class="carousel-item fase">
+                            <img src="./img/2.jpg" class="d-block w-100 imgen" alt="...">
+                        </div>
+                        <div class="carousel-item fase">
+                            <img src="./img/3.jpg" class="d-block w-100 imgen" alt="...">
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="cardForm  col-12 mb-5  ">
+        <div class="card mb-5">
+            <h3 class="mx-auto title p-5">Escribenos y pide lo que quieras</h3>
+            <div class="card-body row ">
+
+                <form class="mx-auto col-sm">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Producto</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                            placeholder="Tipo de pizza">
+                        <small id="emailHelp" class="form-text text-muted">Escribe que pizza deseas.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Direcciòn</label>
+                        <input type="text" class="form-control" id="direction"
+                            placeholder="Escribenos tu direcciòn">
+                    </div>
+                    <button class="btn btn-primary" id="button" onclick="guardar()">Solicitar servicio</button>
+                </form>
+                <div class="col-sm">
+                    <img src="./img/3.jpg" class="d-block w-100  imgen" style="border-radius:5%;" alt="...">
+                </div>
+            </div>
+            <div class="container mx-auto m-5">
+
+                <h4 class="mx-auto p-5 text-center bold">Estos son tus pedidos</h4>
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Direcciòn</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Entregado</th>
+                      </tr>
+                    </thead>
+                    <tbody id='table'>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="js/main.js"></script>
+
+
+</body>
+
+
+
+
+</html>
